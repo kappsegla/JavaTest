@@ -16,10 +16,23 @@ class MainTest {
         try (InputStream inputStream = MainTest.class.getResourceAsStream("/input.txt")) {
             Scanner scanner = new Scanner(inputStream);
 
-            Main main = new Main(scanner);
+            Main main = new Main(scanner, new DataProducer());
             int i = main.readInt();
 
             assertEquals(10, i);
+        }
+    }
+
+    @Test
+    void getInt_ReturnsSomeIntValue_IntValue() throws IOException {
+
+        try (InputStream inputStream = MainTest.class.getResourceAsStream("/input.txt")) {
+            Scanner scanner = new Scanner(inputStream);
+
+            Main main = new Main(scanner, new TestDataProducer());
+            int i = main.getInt();
+
+            assertEquals(11, i);
         }
     }
 }
